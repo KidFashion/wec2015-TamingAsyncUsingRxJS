@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Rx for JavaScript Rocks!</title>
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap-responsive.min.css">-->
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Schedulers example</h1>
+      <p class="lead">Example to show different schedulers in action</p>
+    </div>
+    <table>
+<tbody>
+<tr>
+<td style="padding:0 15px 0 15px;">
+<h2>CurrentThread Scheduler</h2>  
+</td>
+<td style="padding:0 15px 0 15px;">
+<h2>Immediate Scheduler</h2>
+</td>
+<td style="padding:0 15px 0 15px;">
+<h2>Default Scheduler</h2>
+</td>
+</tr>
+<tr>
+
+<td style="padding:0 15px 0 15px;">
+<pre>
+Rx.Observable.fromArray([1,2,3,4,5])
+.flatMap(function(a) {
+  return Rx.Observable.repeat(a, 3,
+<b>Rx.Scheduler.currentThread</b>)})
+</pre>
+</td>
+<td style="padding:0 15px 0 15px;">
+<pre>
+Rx.Observable.fromArray([1,2,3,4,5])
+.flatMap(function(a) {
+  return Rx.Observable.repeat(a, 3, 
+<b>Rx.Scheduler.immediate</b>)})
+</pre>
+</td>
+<td style="padding:0 15px 0 15px;">
+<pre>
+Rx.Observable.fromArray([1,2,3,4,5])
+.flatMap(function(a) {
+  return Rx.Observable.repeat(a, 3, 
+<b>Rx.Scheduler.default</b>)})
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+    <div class="row-fluid">      
+      <ul id="results1"></ul>
+    </div>
+</td>
+<td>
+    <div class="row-fluid">      
+      <ul id="results2"></ul>
+    </div>
+</td>
+<td>
+    <div class="row-fluid">      
+      <ul id="results3"></ul>
+    </div>
+</td>
+</tr>
+</tbody>
+    </table>
+  </div>
+  <script src="../assets/rx.all.js"></script>
+  <script src="schedulers.js"></script>
+<script>main()</script>
+</body>
+</html>
